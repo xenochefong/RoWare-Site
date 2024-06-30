@@ -35,6 +35,13 @@
             margin-bottom: 10px;
         }
 
+        .timer {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
         .button {
             font-family: 'Roboto', sans-serif;
             font-size: 1.2rem;
@@ -87,9 +94,28 @@
     </div>
     <div class="container">
         <h1>RoWare</h1>
+        <div class="timer" id="timer"></div>
         <a href="https://discord.gg/HPPt3S8jSc">
             <button class="button">Get Now</button>
         </a>
     </div>
+    <script>
+        function updateTimer() {
+            const targetDate = new Date("July 4, 2024 00:00:00").getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById("timer").innerHTML = "The event has started!";
+                return;
+            }
+
+            const seconds = Math.floor(distance / 1000);
+            document.getElementById("timer").innerHTML = seconds + " seconds remaining";
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 </body>
 </html>
